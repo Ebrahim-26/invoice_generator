@@ -1,0 +1,38 @@
+import { TextField, Typography } from '@mui/material'
+import React from 'react'
+
+function AddClientPopup() {
+  return (
+       <div>
+    <div className=" mb-2 flex justify-center border-4 rounded-md gap-2 border-black bg-[#8b9cef] shadow-2xl">
+      <Typography sx={{ color: "black", fontSize: "2rem" }}>
+       Add Clients
+      </Typography>
+    </div>
+    <div className="grid grid-cols-1 w-[25rem] border-4 rounded-md border-black p-10 gap-y-3 bg-[#e9e9e9] shadow-2xl">
+      <TextField
+        color="secondary"
+        placeholder="Company Name"
+        size="small"
+      />
+      <TextField color="secondary" placeholder="Email" size="small" />
+      <TextField
+        color="secondary"
+        placeholder="Phone Number"
+        size="small"
+      />
+      <TextField color="secondary" placeholder="Address" size="small" />
+      <TextField
+        color="secondary"
+        placeholder="Contact Person Name"
+        size="small"
+      />
+      <TextField color="secondary" placeholder="Notes" size="small" />
+      <TextField color="secondary" placeholder="GSTIN" size="small" />
+    </div>
+
+    </div>
+  )
+}
+
+export default AddClientPopup

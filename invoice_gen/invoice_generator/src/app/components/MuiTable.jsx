@@ -11,7 +11,8 @@ import Paper from "@mui/material/Paper";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#8b9cef',
+    WebkitPrintColorAdjust: "exact",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -29,37 +30,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, description, unitcost, qty, price) {
-  return { name, description, unitcost, qty, price };
-}
-
-const rows = [
-  createData(1, "Sample text", 6.0, 24, 423),
-  createData(2, "Sample text", 9.0, 37, 421),
-  createData(3, "Sample text", 16.0, 24, 634),
-  createData(4, "Sample text", 3.7, 67, 421),
-  createData(5, "Sample text", 16.0, 49, 123),
-];
-
-export default function MuiTable() {
+export default function MuiTable({data,tableHeader}) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
+    <TableContainer sx={{Width:'10rem'}} component={Paper}>
+      <Table className="rounded-2xl" aria-label="customized table">
+        <TableHead >
           <TableRow>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell align="right">DESCRIPTION</StyledTableCell>
-            <StyledTableCell align="right">UNIT COST</StyledTableCell>
-            <StyledTableCell align="right">QTY</StyledTableCell>
-            <StyledTableCell align="right">PRICE</StyledTableCell>
+          {tableHeader.map((item) => (
+              <StyledTableCell align="right">
+                {item.value}
+              </StyledTableCell>
+            ))}
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
+        <TableBody className="">
+          {data.map((row) => (
+            <StyledTableRow key={row.id}>
+              <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
               <StyledTableCell align="right">{row.unitcost}</StyledTableCell>
               <StyledTableCell align="right">{row.qty}</StyledTableCell>
@@ -67,7 +54,7 @@ export default function MuiTable() {
             </StyledTableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table>  
     </TableContainer>
   );
 }

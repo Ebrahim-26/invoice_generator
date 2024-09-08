@@ -15,9 +15,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import Link from 'next/link';
 const drawerWidth = 240;
-const navItems = ['Bills', 'Clients', 'Generate Bill'];
+const navItems = [
+  {opt:'Bill', path:'/bill'},
+  {opt:'Clients', path:'/clients'},
+  {opt:'Home', path:'/'},
+
+];
 
 function Navbar(props) {
   const { window } = props;
@@ -35,9 +40,9 @@ function Navbar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.opt} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.opt} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -66,12 +71,12 @@ function Navbar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-           Easy Bill
+           Easy Invoice
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key={item.opt} sx={{ color: '#fff' }}>
+                <Link href={`${item.path}`}>{item.opt}</Link>
               </Button>
             ))}
           </Box>
